@@ -1,7 +1,5 @@
 """duckdb and storage"""
-import duckdb
 
-from setup import kingdom_state
 
 def setup_database(con):
     # kingdom daily

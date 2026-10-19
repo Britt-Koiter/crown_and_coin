@@ -5,7 +5,6 @@ import duckdb
 
 from kingdom import Kingdom
 from simulation import simulate_day
-from event import trigger_event
 from database import setup_database, save_daily_snapshot
 
 con = duckdb.connect("fantasy-economy/kingdom.duckdb")
