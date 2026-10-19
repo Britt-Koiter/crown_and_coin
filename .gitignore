@@ -1,0 +1,5 @@
+# Don't save databases
+*.duckdb
+
+# Just a duckdb try
+grocery/
