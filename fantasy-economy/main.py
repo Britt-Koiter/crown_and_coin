@@ -14,7 +14,7 @@ try:
     kingdom = Kingdom()
     save_daily_snapshot(con, kingdom)
     while kingdom.day < 30:
-        simulate_day(kingdom)
+        simulate_day(con, kingdom)
         save_daily_snapshot(con, kingdom)
         print(kingdom)
 finally:

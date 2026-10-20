@@ -18,8 +18,8 @@ def setup_database(con):
     # kingdom event_history
     con.execute("""
         CREATE TABLE IF NOT EXISTS event_histroy (
-            id INTEGER PRIMARY KEY,
             day INTEGER,
+            event_name VARCHAR,
             event_type VARCHAR,
             description VARCHAR
         )
@@ -28,7 +28,6 @@ def setup_database(con):
     # kingdom consequence_history
     con.execute("""
         CREATE TABLE IF NOT EXISTS consequence_history (
-            id INTEGER PRIMARY KEY,
             day INTEGER,
             resource VARCHAR,
             amount_required INTEGER,
@@ -51,3 +50,16 @@ def save_daily_snapshot(con, kingdom):
                    current_state["wood"],
                    current_state["iron"],
                ])
+
+
+def save_event(con, kingdom, event, description):
+    con.execute("""
+    INSERT INTO event_histroy (day, event_name, event_type, description)
+        VALUES (?, ?, ?, ?)
+                """, [kingdom.day, event["name"], event["type"], description])
+
+def save_consequence(con, kingdom, consequences):
+    for consequence in consequences:
+        con.execute("""
+                    INSERT INTO consequence_history (day, resource, amount_required, amount_paid, shortage)
+                    VALUES (?, ?, ?, ?, ?)""", [kingdom.day, consequence["resource"], consequence["required"], consequence["paid"], consequence["shortage"]])
