@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Crown & Coin{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+          rel="stylesheet">
+</head>
+
+<body>
+    <div class="page-frame">
+
+        <!-- Royal header -->
+        <header class="royal-header">
+            <div class="royal-emblem">♛</div>
+
+            <div class="royal-heading">
+                <p class="eyebrow">The Royal Chronicle</p>
+                <h1>Crown <span>&</span> Coin</h1>
+                <p class="royal-motto">
+                    Wisdom · Balance · Prosperity
+                </p>
+            </div>
+
+            <div class="day-plaque">
+                <span class="plaque-label">The Royal Calendar</span>
+                <span class="plaque-day">
+                    Day {{ kingdom.day if kingdom else '—' }}
+                </span>
+            </div>
+        </header>
+
+        <!-- Main navigation -->
+        <nav class="main-nav">
+            <a href="{{ url_for('kingdom_page') }}"
+               class="nav-link">♜ Kingdom</a>
+
+            <a href="{{ url_for('market_page') }}"
+               class="nav-link">♛ Market</a>
+
+            <a href="{{ url_for('history_page') }}"
+               class="nav-link">📜 Chronicles</a>
+        </nav>
+
+        <!-- Main page layout -->
+        <div class="kingdom-layout">
+
+            <!-- Left sidebar -->
+            <aside class="royal-sidebar">
+                <div class="side-panel">
+                    <span class="side-crown">♛</span>
+                    <h2>The Crown's Wisdom</h2>
+
+                    <p class="royal-quote">
+                        "A prosperous kingdom is built
+                        not only with wealth, but with
+                        wise choices."
+                    </p>
+
+                    <div class="ornament">✦ ── ❖ ── ✦</div>
+
+                    <p class="side-caption">
+                        Every decision shapes the realm.
+                    </p>
+                </div>
+            </aside>
+
+            <!-- Page-specific content -->
+            <main class="main-content">
+                <div class="content-heading">
+                    <p class="eyebrow">By Royal Decree</p>
+                    <h2>{% block page_heading %}The Royal Court{% endblock %}</h2>
+                    <div class="heading-divider">✦</div>
+                </div>
+
+                {% block content %}
+                {% endblock %}
+            </main>
+
+            <!-- Right sidebar -->
+            <aside class="royal-sidebar right-sidebar">
+
+                <section class="side-panel">
+                    <h2>Royal Treasury</h2>
+
+                    {% if kingdom %}
+                    <div class="resource-row">
+                        <span>Gold</span>
+                        <strong>{{ kingdom.treasury }}</strong>
+                    </div>
+
+                    <div class="resource-row">
+                        <span>🌾 Grain</span>
+                        <strong>{{ kingdom.grain }}</strong>
+                    </div>
+
+                    <div class="resource-row">
+                        <span>🪵 Wood</span>
+                        <strong>{{ kingdom.wood }}</strong>
+                    </div>
+
+                    <div class="resource-row">
+                        <span>⚒ Iron</span>
+                        <strong>{{ kingdom.iron }}</strong>
+                    </div>
+                    {% endif %}
+                </section>
+
+                <section class="side-panel">
+                    <h2>Kingdom Status</h2>
+
+                    {% if kingdom %}
+                    <div class="resource-row">
+                        <span>Population</span>
+                        <strong>{{ kingdom.population }}</strong>
+                    </div>
+
+                    <div class="resource-row">
+                        <span>Happiness</span>
+                        <strong>{{ kingdom.happiness }}</strong>
+                    </div>
+                    {% endif %}
+                </section>
+
+            </aside>
+        </div>
+
+        <footer class="royal-footer">
+            <span>✦</span>
+            <p>May your reign be long and prosperous.</p>
+            <span>✦</span>
+        </footer>
+
+    </div>
+</body>
+</html>

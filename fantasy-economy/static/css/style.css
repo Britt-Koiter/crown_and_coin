@@ -1,0 +1,312 @@
+
+:root {
+    --navy: #101e2b;
+    --navy-light: #1b3040;
+    --gold: #c9a45c;
+    --gold-light: #efd69b;
+    --parchment: #f1e4c7;
+    --ink: #202b34;
+    --muted: #b8b09f;
+    --border: #846533;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #09131c;
+    color: var(--gold-light);
+    font-family: "Lora", Georgia, serif;
+    line-height: 1.6;
+}
+
+.page-frame {
+    width: min(1500px, 100%);
+    margin: 0 auto;
+    border-inline: 1px solid var(--border);
+    min-height: 100vh;
+}
+
+/* Header */
+
+.royal-header {
+    min-height: 190px;
+    padding: 30px 5%;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    background:
+        linear-gradient(90deg, #101e2b 35%, #182d3b 75%, #101e2b);
+    border-bottom: 3px double var(--gold);
+}
+
+.royal-emblem {
+    width: 100px;
+    height: 115px;
+    display: grid;
+    place-items: center;
+    border: 2px solid var(--gold);
+    outline: 1px solid var(--border);
+    outline-offset: 5px;
+    font-size: 3.5rem;
+    color: var(--gold);
+    flex-shrink: 0;
+}
+
+.royal-heading h1 {
+    margin: 0;
+    font-family: "Cinzel", Georgia, serif;
+    font-size: clamp(2rem, 4vw, 3.6rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+}
+
+.royal-heading h1 span {
+    color: var(--gold);
+}
+
+.eyebrow {
+    margin: 0 0 5px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-size: 0.7rem;
+    color: var(--gold);
+}
+
+.royal-motto {
+    margin-bottom: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+}
+
+.day-plaque {
+    margin-left: auto;
+    padding: 18px 24px;
+    min-width: 180px;
+    text-align: center;
+    border: 1px solid var(--gold);
+    background: #09151f;
+    display: flex;
+    flex-direction: column;
+}
+
+.plaque-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--muted);
+}
+
+.plaque-day {
+    font-family: "Cinzel", Georgia, serif;
+    font-size: 1.4rem;
+    color: var(--gold-light);
+}
+
+/* Navigation */
+
+.main-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: #0b1823;
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-link {
+    padding: 18px 28px;
+    text-decoration: none;
+    color: var(--gold-light);
+    font-family: "Cinzel", Georgia, serif;
+    border-bottom: 3px solid transparent;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+    background: var(--navy-light);
+    color: white;
+    border-bottom-color: var(--gold);
+}
+
+/* Main layout */
+
+.kingdom-layout {
+    display: grid;
+    grid-template-columns: 190px minmax(0, 1fr) 270px;
+    gap: 18px;
+    padding: 22px;
+    align-items: start;
+}
+
+.royal-sidebar {
+    display: grid;
+    gap: 18px;
+}
+
+.side-panel {
+    padding: 20px;
+    background: var(--navy);
+    border: 1px solid var(--border);
+    outline: 1px solid #493a24;
+    outline-offset: -5px;
+}
+
+.side-panel h2 {
+    margin: 0 0 18px;
+    padding-bottom: 12px;
+    font-family: "Cinzel", Georgia, serif;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--gold-light);
+    border-bottom: 1px solid #39434a;
+}
+
+.side-crown {
+    display: block;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 2.8rem;
+    color: var(--gold);
+}
+
+.royal-quote {
+    text-align: center;
+    font-style: italic;
+    color: var(--gold-light);
+    font-size: 0.95rem;
+}
+
+.ornament {
+    margin: 22px 0;
+    text-align: center;
+    color: var(--gold);
+    font-size: 0.8rem;
+}
+
+.side-caption {
+    color: var(--muted);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+/* Main content */
+
+.main-content {
+    min-height: 540px;
+    padding: clamp(22px, 4vw, 48px);
+    background: var(--parchment);
+    color: var(--ink);
+    border: 4px double var(--border);
+    box-shadow: 0 8px 25px #0005;
+}
+
+.content-heading {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.content-heading h2 {
+    margin: 5px 0;
+    font-family: "Cinzel", Georgia, serif;
+    font-size: clamp(1.5rem, 3vw, 2.3rem);
+    color: #172b3b;
+}
+
+.heading-divider {
+    margin-top: 14px;
+    color: #a17a37;
+}
+
+/* Resource lists */
+
+.resource-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #ffffff18;
+    font-size: 0.85rem;
+}
+
+.resource-row:last-child {
+    border-bottom: none;
+}
+
+.resource-row strong {
+    color: var(--gold-light);
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Footer */
+
+.royal-footer {
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: #0b1823;
+    border-top: 2px solid var(--border);
+    color: var(--muted);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.royal-footer p {
+    margin: 0;
+}
+
+.royal-footer span {
+    color: var(--gold);
+}
+
+/* Smaller screens */
+
+@media (max-width: 1050px) {
+    .kingdom-layout {
+        grid-template-columns: minmax(0, 1fr) 250px;
+    }
+
+    .kingdom-layout > .royal-sidebar:first-child {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .royal-header {
+        flex-wrap: wrap;
+        padding: 25px;
+    }
+
+    .royal-emblem {
+        width: 65px;
+        height: 75px;
+        font-size: 2.5rem;
+    }
+
+    .day-plaque {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .kingdom-layout {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 12px;
+    }
+
+    .right-sidebar {
+        grid-row: auto;
+    }
+
+    .nav-link {
+        padding: 12px 14px;
+        font-size: 0.85rem;
+    }
+}

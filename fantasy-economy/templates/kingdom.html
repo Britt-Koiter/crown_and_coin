@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}The Royal Court | Crown & Coin{% endblock %}
+
+{% block page_heading %}Your Kingdom Awaits{% endblock %}
+
+{% block content %}
+
+<p>
+    Your Majesty, welcome to the royal court.
+    The fate of the realm rests in your hands.
+</p>
+
+<h3>The State of the Realm</h3>
+
+<p>
+    Your kingdom currently holds
+    <strong>{{ kingdom.treasury }} gold coins</strong>
+    in its treasury.
+</p>
+
+{% if market_today %}
+    <h3>{{ market_today.name }}</h3>
+    <p>The market is open. Current prices:</p>
+
+    <ul>
+        {% for resource, price in market_today.prices.items() %}
+            <li>{{ resource.title() }}: {{ price }} coins</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No market is open today. Another opportunity awaits.</p>
+{% endif %}
+
+{% endblock %}

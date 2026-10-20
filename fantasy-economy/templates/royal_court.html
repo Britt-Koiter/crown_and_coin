@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KINGDOM SIM!</title>
+</head>
+<body>
+
+<!--HEADER-->
+<container>
+    <h1>Kingdom state</h1>
+    <ul>
+        <li>Gold {{ kingdom.treasury }}</li>
+        <li>Grain {{ kingdom.grain }}</li>
+        <li>Wood {{ kingdom.wood }}</li>
+        <li>Iron {{ kingdom.iron }}</li>
+    </ul>
+    <h2>Upcoming markt</h2>
+    {% if market_today %}
+    <p>Today is the ..... market</p>
+    {% else %}
+    <p>The next upcomming market is ...... in ..... days!</p>
+    {% endif %}
+</container>
+
+
+</body>
+</html>
