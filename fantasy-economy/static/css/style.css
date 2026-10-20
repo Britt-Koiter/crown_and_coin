@@ -310,3 +310,86 @@ body {
         font-size: 0.85rem;
     }
 }
+
+
+
+/* Royal day advancement */
+
+.royal-action {
+    /*margin-top: 5px;*/
+    /*padding-top: 4px;*/
+    text-align: center;
+}
+
+.royal-action .ornament {
+    margin: 10px 0 14px;
+    color: var(--gold);
+    font-size: 0.75rem;
+}
+
+.action-label {
+    margin: 0 0 10px;
+    color: var(--gold);
+    font-family: "Cinzel", Georgia, serif;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.royal-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 8px;
+
+    background: linear-gradient(
+        135deg,
+        #24394a,
+        #101e2b
+    );
+
+    color: var(--gold-light);
+    border: 1px solid var(--gold);
+    outline: 1px solid #493a24;
+    outline-offset: -4px;
+
+    font-family: "Cinzel", Georgia, serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.5px;
+
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.royal-button:hover {
+    background: var(--gold);
+    color: #101e2b;
+    box-shadow: 0 0 14px #c9a45c35;
+}
+
+.royal-button:active {
+    transform: translateY(1px);
+}
+
+.button-icon {
+    font-size: 1.1rem;
+}
+
+.button-arrow {
+    color: var(--gold);
+    transition: transform 0.2s ease;
+}
+
+.royal-button:hover .button-arrow {
+    color: #101e2b;
+    transform: translateX(3px);
+}
+
+.action-caption {
+    margin: 10px 0 0;
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-style: italic;
+}

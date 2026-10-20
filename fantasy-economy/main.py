@@ -4,7 +4,7 @@ Start the simulation
 import os
 
 import duckdb
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 
 from kingdom import Kingdom
 from simulation import simulate_day
@@ -39,6 +39,13 @@ def market_page():
 def history_page():
     return render_template("history.html", kingdom=kingdom)
 
+
+@app.route("/advance-day", methods=["POST"])
+def advance_day():
+    simulate_day(con, kingdom)
+    save_daily_snapshot(con, kingdom)
+
+    return redirect(url_for("kingdom_page"))
 
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=False)

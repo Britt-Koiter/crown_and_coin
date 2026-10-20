@@ -129,6 +129,18 @@
                     {% endif %}
                 </section>
 
+                <section class="side-panel">
+                    <div class="royal-action">
+                        <form action="{{ url_for('advance_day') }}" method="POST">
+                            <button type="submit" class="royal-button">
+                                <span class="button-icon">♜</span>
+                                <span>Advance Day</span>
+                                <span class="button-arrow">→</span>
+                            </button>
+                        </form>
+                    </div>
+                </section>
+
             </aside>
         </div>
 
