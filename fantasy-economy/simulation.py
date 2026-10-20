@@ -122,7 +122,6 @@ def trade(con, kingdom, market, action, resource, quantity):
 
     if action == "buy":
         if kingdom.treasury < total_price:
-            print("Insufficient funds!")
             return False
 
         kingdom.treasury -= total_price
@@ -130,8 +129,8 @@ def trade(con, kingdom, market, action, resource, quantity):
 
     else: # Sell
         if stock < quantity:
-            print(f"Not enough {resource} to sell!")
             return False
+
         kingdom.treasury += total_price
         setattr(kingdom, resource, stock - quantity)
 
@@ -140,11 +139,12 @@ def trade(con, kingdom, market, action, resource, quantity):
         "action": action,
         "resource": resource,
         "quantity": quantity,
-        "price": total_price,
+        "price": price,
+        "total_price": total_price,
     }
 
     save_transaction(con, market, transaction)
 
     print(f"{action.title()} {quantity} {resource}"
-          f"for {total_price} coins")
+          f" for {total_price} coins")
     return True

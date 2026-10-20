@@ -39,6 +39,7 @@ def setup_database(con):
     # kingdom markets
     con.execute("""
         CREATE TABLE IF NOT EXISTS markets (
+            day INTEGER,
             market_type VARCHAR,
             grain_price INTEGER,
             wood_price INTEGER,
@@ -52,6 +53,7 @@ def setup_database(con):
             action VARCHAR,
             resource VARCHAR,
             quantity INTEGER,
+            price INTEGER,
             total_price INTEGER,)
     """)
 
@@ -93,12 +95,12 @@ def save_consequence(con, kingdom, consequences):
 
 
 def save_market(con, market):
-    con.execute("""INSERT INTO markets (market_type, grain_price, wood_price, iron_price) VALUES (?, ?, ?, ?)""", [
-        market["name"], market["prices"]["grain"], market["prices"]["wood"], market["prices"]["iron"]
+    con.execute("""INSERT INTO markets (day, market_type, grain_price, wood_price, iron_price) VALUES (?, ?, ?, ?, ?)""", [
+        market["day"], market["name"], market["prices"]["grain"], market["prices"]["wood"], market["prices"]["iron"]
     ])
 
 
 def save_transaction(con, market, transaction):
-    con.execute("""INSERT INTO transaction_history (market_type, action, resource, quantity, total_price) VALUES (?, ?, ?, ?, ?)""", [
-        market["name"], transaction["action"], transaction["resource"], transaction["quantity"], transaction["price"]
+    con.execute("""INSERT INTO transaction_history (market_type, action, resource, quantity, price, total_price) VALUES (?, ?, ?, ?, ?, ?)""", [
+        market["name"], transaction["action"], transaction["resource"], transaction["quantity"], transaction["price"], transaction["total_price"]
     ])

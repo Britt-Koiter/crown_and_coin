@@ -4,10 +4,10 @@ Start the simulation
 import os
 
 import duckdb
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 
 from kingdom import Kingdom
-from simulation import simulate_day
+from simulation import simulate_day, trade
 from database import setup_database, save_daily_snapshot
 
 app = Flask(__name__)
@@ -25,14 +25,16 @@ save_daily_snapshot(con, kingdom)
 
 @app.route("/")
 def kingdom_page():
-    return render_template("kingdom.html", kingdom = kingdom, market_today=None)
+    market = get_market_today(con, kingdom.day)
+    return render_template("kingdom.html", kingdom = kingdom, market_today=market)
 
 @app.route("/market")
 def market_page():
+    market = get_market_today(con, kingdom.day)
     return render_template(
         "market.html",
         kingdom=kingdom,
-        market_today=None
+        market_today=market
     )
 
 @app.route("/history")
@@ -46,6 +48,56 @@ def advance_day():
     save_daily_snapshot(con, kingdom)
 
     return redirect(url_for("kingdom_page"))
+
+
+def get_market_today(con, day):
+    result = con.execute("""
+        SELECT day, market_type, grain_price, wood_price, iron_price
+        FROM markets
+        WHERE day = ?
+    """, [day]).fetchone()
+
+    if result is None:
+        return None
+
+    return {
+        "day": result[0],
+        "name": result[1],
+        "prices": {
+            "grain": result[2],
+            "wood": result[3],
+            "iron": result[4]
+        }
+    }
+
+
+@app.route("/trade", methods=["POST"])
+def trade_route():
+    action = request.form.get("action")
+    resource = request.form.get("resource")
+    quantity = request.form.get("quantity", type=int)
+
+    market = get_market_today(con, kingdom.day)
+
+    if market is None:
+        return redirect(url_for("market_page"))
+
+    try:
+        success = trade(
+            con,kingdom, market,
+            action=action, resource=resource, quantity=quantity,
+        )
+    except ValueError as error:
+        print(error)
+        success = False
+
+    if success:
+        print("Trade successful!")
+    else:
+        print("Trade failed!")
+
+    return redirect(url_for("market_page"))
+
 
 if __name__ == "__main__":
     app.run(debug=True, use_reloader=False)

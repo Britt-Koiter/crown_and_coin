@@ -393,3 +393,40 @@ body {
     font-size: 0.7rem;
     font-style: italic;
 }
+
+.market-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+}
+
+.resource-card {
+    padding: 1.25rem;
+    border: 1px solid #b89551;
+    border-radius: 8px;
+    background: #202838;
+    color: white;
+}
+
+.resource-card h4 {
+    margin-top: 0;
+    color: #d7b56d;
+}
+
+.resource-card input[type="number"] {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0.5rem 0 1rem;
+    padding: 0.6rem;
+}
+
+.resource-card button {
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+    .market-grid {
+        grid-template-columns: 1fr;
+    }
+}

@@ -10,9 +10,40 @@
     {% if market_today %}
         <h3>{{ market_today.name }}</h3>
 
-        {% for resource, price in market_today.prices.items() %}
-            <p>{{ resource.title() }}: {{ price }} coins</p>
-        {% endfor %}
+        <div class="market-grid">
+            {% for resource, price in market_today.prices.items() %}
+                <div class="resource-card">
+                    <h4>{{ resource.title() }}</h4>
+                    <p>{{ price }} coins per unit</p>
+
+                    <form action="{{ url_for('trade_route') }}" method="POST">
+                        <input type="hidden" name="action" value="buy">
+                        <input type="hidden"  name="resource"  value="{{ resource }}">
+
+                        <label for="quantity-{{ resource }}">
+                            Quantity
+                        </label>
+
+                        <input
+                            id="quantity-{{ resource }}" type="number"
+                            name="quantity" min="1" value="1" required>
+
+                        <p>
+                            Total:
+                            <span id="total-{{ resource }}">
+                                {{ price }}
+                            </span>
+                            coins
+                        </p>
+
+                        <button type="submit">
+                            Buy {{ resource }}
+                        </button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+
     {% else %}
         <p>No market data available yet.</p>
     {% endif %}
